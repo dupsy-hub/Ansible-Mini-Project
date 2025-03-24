@@ -24,10 +24,15 @@ This repository contains an Ansible Mini Project that automates the setup and co
 
 Project Structure
 📁 ansible-mini-project
+
  ├── inventory            # Ansible inventory file
+ 
  ├── playbook.yml         # Ansible playbook
+ 
  ├── scripts
+ 
  │ ├── copy_passwd.sh   # Bash script for copying passwd file
+ 
  ├── README.md            # Project documentation
 
  Step-by-Step Implementation
