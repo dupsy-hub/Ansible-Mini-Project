@@ -27,7 +27,7 @@ Project Structure
  ├── inventory            # Ansible inventory file
  ├── playbook.yml         # Ansible playbook
  ├── scripts
- │   ├── copy_passwd.sh   # Bash script for copying passwd file
+ │ ├── copy_passwd.sh   # Bash script for copying passwd file
  ├── README.md            # Project documentation
 
  Step-by-Step Implementation
