@@ -51,5 +51,6 @@ Ensure the script is executable by running the following command on the control 
 chmod +x copy_passwd.sh
 
 ansible all -i inventory -m copy -a "src=copy_passwd.sh dest=/tmp/copy_passwd.sh mode=0755" 
+
 ansible all -i inventory -m shell -a "/tmp/copy_passwd.sh" 
 
