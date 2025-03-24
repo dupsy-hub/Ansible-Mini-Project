@@ -31,7 +31,7 @@ Project Structure
  
  ├── scripts
  
- │  ├── copy_passwd.sh   # Bash script for copying passwd file
+ │   ├── copy_passwd.sh   # Bash script for copying passwd file
  
  ├── README.md            # Project documentation
 
