@@ -1,0 +1,77 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Create devops group
+      group:
+        name: devops
+        state: present
+
+    - name: Create users and add them to devops group
+      user:
+        name: "{{ item }}"
+        group: devops
+        state: present
+      loop:
+        - alice
+        - bob
+        - charlie
+
+    - name: Create directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: devops
+        group: devops
+        mode: "0755"
+      loop:
+        - /home/devops/projects
+        - /home/devops/logs
+
+    - name: Create files
+      file:
+        path: "{{ item }}"
+        state: touch
+        owner: devops
+        group: devops
+        mode: "0644"
+      loop:
+        - /home/devops/projects/project1.txt
+        - /home/devops/logs/log1.txt
+
+    - name: Update system packages (CentOS/RHEL)
+      yum:
+        name: "*"
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: Update system packages (Ubuntu/Debian)
+      apt:
+        upgrade: yes
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install httpd (Centos)
+      package:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Ensure httpd service is installed
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Apache2 (Debian)
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Apache2 service is installed
+      service:
+        name: Apache2
+        state: started
+        enabled: yes
+      when: ansible_os_family == "Debian"
